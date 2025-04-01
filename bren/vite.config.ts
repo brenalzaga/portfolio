@@ -4,18 +4,21 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // Production base path configuration
   base: process.env.NODE_ENV === 'production' ? '/' : '/',
   
   server: {
-    host: "::",
+    host: "0.0.0.0", // Required for Render deployment
     port: 8080,
-    // Added for Render compatibility
-    strictPort: true
+    strictPort: true,
+    allowedHosts: [
+      'bren-portfolio-w991.onrender.com', // Your Render domain
+      'localhost' // Local development
+    ]
   },
   preview: {
-    port: 3000, // Match Render's expected port
-    strictPort: true
+    port: 3000,
+    strictPort: true,
+    host: "0.0.0.0" // Required for preview server
   },
   plugins: [
     react(),
@@ -26,20 +29,23 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Build optimization for Render
   build: {
     outDir: 'dist',
     sourcemap: mode === 'development',
+    minify: 'terser', // Added minification
     chunkSizeWarningLimit: 1600,
     rollupOptions: {
       output: {
         manualChunks: {
           react: ['react', 'react-dom'],
-          vendor: ['lodash', 'axios']
+          vendor: ['lodash', 'axios'],
+          utils: ['date-fns', 'lodash-es'] // Additional optimization
         }
       }
     }
   },
-  // Environment variables prefix
-  envPrefix: 'VITE_'
+  envPrefix: 'VITE_',
+  optimizeDeps: { // Added dependency optimization
+    include: ['react', 'react-dom', 'axios']
+  }
 }));
