@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
 import { useTheme } from '@/contexts/ThemeContext';
+import { HashRouter as Router } from 'react-router-dom';
 
 
 const queryClient = new QueryClient();

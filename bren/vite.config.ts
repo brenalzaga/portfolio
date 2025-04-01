@@ -30,16 +30,12 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: 'dist',
-    sourcemap: mode === 'development',
-    minify: 'esbuild', // Added minification
-    chunkSizeWarningLimit: 1600,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          vendor: ['lodash', 'axios'],
-          utils: ['date-fns', 'lodash-es'] // Additional optimization
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
         }
       }
     }
