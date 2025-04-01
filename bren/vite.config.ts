@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     strictPort: true,
     allowedHosts: [
-      'portfolio-2-r46x.onrender.com', // Your Render domain
+      'bren.onrender.com', // Your Render domain
       'localhost' // Local development
     ]
   },
