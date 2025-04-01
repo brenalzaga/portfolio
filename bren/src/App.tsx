@@ -10,6 +10,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
 import { useTheme } from '@/contexts/ThemeContext';
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
