@@ -7,7 +7,7 @@ export default defineConfig(({ command, mode }) => ({
   server: {
     port: Number(process.env.PORT) || 3000,
     strictPort: true,
-    host: true // Needed for Render's external access
+    host: '0.0.0.0' // Needed for Render's external access
   },
   preview: {
     port: Number(process.env.PORT) || 3000,
