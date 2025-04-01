@@ -3,18 +3,20 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
   server: {
     port: Number(process.env.PORT) || 3000,
-    strictPort: true
+    strictPort: true,
+    host: true // Needed for Render's external access
   },
   preview: {
     port: Number(process.env.PORT) || 3000,
-    strictPort: true
+    strictPort: true,
+    host: true
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    mode === 'development' && componentTagger(), // Now properly scoped
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -22,18 +24,21 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: 'dist',
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            return 'vendor'
+            return id.toString().split('node_modules/')[1].split('/')[0];
           }
         }
       }
     }
   },
   envPrefix: 'VITE_',
-  optimizeDeps: { // Added dependency optimization
-    include: ['react', 'react-dom', 'axios']
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'axios'],
+    exclude: ['lovable-tagger'] // Exclude dev-only dependency
   }
 }));
