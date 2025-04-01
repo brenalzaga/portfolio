@@ -5,14 +5,22 @@ import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ command, mode }) => ({
   server: {
+    host: "0.0.0.0",
     port: Number(process.env.PORT) || 3000,
     strictPort: true,
-    host: '0.0.0.0' // Needed for Render's external access
+    allowedHosts: [
+      'brenalzaga.onrender.com', // Your Render domain
+      'localhost' // Local development
+    ]
   },
   preview: {
+    host: "0.0.0.0",
     port: Number(process.env.PORT) || 3000,
     strictPort: true,
-    host: true
+    allowedHosts: [
+      'brenalzaga.onrender.com', // Explicitly allow Render domain
+      'localhost'
+    ]
   },
   plugins: [
     react(),
