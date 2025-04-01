@@ -14,7 +14,7 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
       <img
         src="/logo.png" // Path to your image in public folder
         alt="Mabren Quiro Logo"
-        className="h-16 w-14" // Auto-dark mode adaptation
+        className="h-14 w-12" // Auto-dark mode adaptation
       />
     </Link>
   );

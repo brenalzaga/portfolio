@@ -9,8 +9,8 @@ export default defineConfig(({ command, mode }) => ({
     port: Number(process.env.PORT) || 3000,
     strictPort: true,
     allowedHosts: [
-      'brenalzaga.onrender.com', // Your Render domain
-      'localhost' // Local development
+      'brenalzaga.onrender.com', 
+      'localhost' 
     ]
   },
   preview: {
@@ -18,13 +18,13 @@ export default defineConfig(({ command, mode }) => ({
     port: Number(process.env.PORT) || 3000,
     strictPort: true,
     allowedHosts: [
-      'brenalzaga.onrender.com', // Explicitly allow Render domain
+      'brenalzaga.onrender.com', 
       'localhost'
     ]
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(), // Now properly scoped
+    mode === 'development' && componentTagger(), 
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -47,6 +47,6 @@ export default defineConfig(({ command, mode }) => ({
   envPrefix: 'VITE_',
   optimizeDeps: {
     include: ['react', 'react-dom', 'axios'],
-    exclude: ['lovable-tagger'] // Exclude dev-only dependency
+    exclude: ['lovable-tagger']
   }
 }));

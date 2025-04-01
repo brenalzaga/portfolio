@@ -101,7 +101,7 @@ const Footer = () => {
                 <span className="font-semibold">Email:</span> mabrenquiro@gmail.com
               </li>
               <li className="text-teal-200">
-                <span className="font-semibold">Phone:</span> +63 912 345 6789
+                <span className="font-semibold">Phone:</span> +63 938 4439 638
               </li>
               <li className="text-teal-200">
                 <span className="font-semibold">Location:</span> Philippines
