@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
     sourcemap: mode === 'development',
-    minify: 'terser', // Added minification
+    minify: 'esbuild', // Added minification
     chunkSizeWarningLimit: 1600,
     rollupOptions: {
       output: {
