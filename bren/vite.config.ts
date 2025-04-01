@@ -3,22 +3,14 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/' : '/',
-  
+export default defineConfig({
   server: {
-    host: "0.0.0.0", // Required for Render deployment
-    port: 8080,
-    strictPort: true,
-    allowedHosts: [
-      'bren.onrender.com', // Your Render domain
-      'localhost' // Local development
-    ]
+    port: Number(process.env.PORT) || 3000,
+    strictPort: true
   },
   preview: {
-    port: 3000,
-    strictPort: true,
-    host: "0.0.0.0" // Required for preview server
+    port: Number(process.env.PORT) || 3000,
+    strictPort: true
   },
   plugins: [
     react(),
